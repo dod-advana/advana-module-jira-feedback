@@ -30,7 +30,7 @@
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@material-ui/core": "4.11.4",
     "@material-ui/lab": "4.0.0-alpha.58",
-    "@dod-advana/advana-platform-ui": "^0.0.20",
+    "advana-platform-ui": "^0.0.20",
     "bootstrap": "^5.0.1",
     "font-awesome": "^4.7.0",
     "react": "^17.0.2",
