@@ -5,7 +5,7 @@
   "publishConfig": {
     "registry":"https://npm.pkg.github.com"
   },
-  "repository": "git://github.com/dod-advana/advana-module-jira-feedback.git"
+  "repository": "git://github.com/dod-advana/advana-module-jira-feedback.git",
   "babel": {
     "presets": [
       "@babel/preset-react",
