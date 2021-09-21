@@ -1,9 +1,9 @@
 {
-  "name": "advana-jira-feedback",
+  "name": "@dod-advana/advana-jira-feedback",
   "version": "0.4.10",
   "private": false,
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": "git://github.com/dod-advana/advana-module-jira-feedback.git",
   "babel": {
