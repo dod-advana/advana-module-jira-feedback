@@ -22,7 +22,7 @@ jobs:
           scope: '@dod-advana'
       - run: |
           npm set "@dod-advana:registry" "https://npm.pkg.github.com" && \
-          npm set "//https://npm.pkg.github.com/:_authToken" "${NPM_AUTH_TOKEN}" && \
+          npm set "//https://npm.pkg.github.com/:_authToken" "${NODE_AUTH_TOKEN}" && \
           npm install && npm ci && npm test --passWithNoTests
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPMRC_FILE}}
@@ -41,7 +41,7 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       - run: |
           npm set "@dod-advana:registry" "https://npm.pkg.github.com" && \
-          npm set "//https://npm.pkg.github.com/:_authToken" "${NPM_AUTH_TOKEN}" && \
+          npm set "//https://npm.pkg.github.com/:_authToken" "${NODE_AUTH_TOKEN}" && \
           npm install && npm ci
       - run: npm run publish:prepare
       - run: npm publish
