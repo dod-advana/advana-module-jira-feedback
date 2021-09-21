@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import ThemeDefault from 'advana-platform-ui/dist/theme-default';
+import ThemeDefault from '@dod-advana/advana-platform-ui/dist/theme-default';
 import Dialog from '@material-ui/core/Dialog';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -11,8 +11,8 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import LoadingIndicator from 'advana-platform-ui/dist/loading/LoadingIndicator';
-import Auth from 'advana-platform-ui/dist/utilities/Auth';
+import LoadingIndicator from '@dod-advana/advana-platform-ui/dist/loading/LoadingIndicator';
+import Auth from '@dod-advana/advana-platform-ui/dist/utilities/Auth';
 import StarRating from './StarRating';
 import { submitFeedback } from '../api/api';
 import 'font-awesome/css/font-awesome.css';
