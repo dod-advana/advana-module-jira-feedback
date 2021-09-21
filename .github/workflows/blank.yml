@@ -43,7 +43,9 @@ jobs:
           npm set "@dod-advana:registry" "https://npm.pkg.github.com" && \
           npm set "//https://npm.pkg.github.com/:_authToken" "${NODE_AUTH_TOKEN}" && \
           npm install && npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPMRC_FILE}}
       - run: npm run publish:prepare
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPMRC_FILE}}
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
