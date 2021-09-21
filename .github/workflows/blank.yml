@@ -39,10 +39,11 @@ jobs:
         with:
           node-version: 14
           registry-url: https://npm.pkg.github.com/
-          scope: '@dod-advana'
       - run: |
           npm set "@dod-advana:registry" "https://npm.pkg.github.com" && \
           npm set "//https://npm.pkg.github.com/:_authToken" "${NPM_AUTH_TOKEN}" && \
-          npm install && npm ci && npm run publish:prepare && npm publish
+          npm install && npm ci
+      - run: npm run publish:prepare
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPMRC_FILE}}
