@@ -197,7 +197,7 @@ export default function FeedbackModal({
 
 	return <MuiThemeProvider theme={ThemeDefault}>
 		<div className={classes.root}>
-			{alert && <Alert severity={alert.severity}>
+			{alert && <Alert severity={alert.severity} onClose={()=>setAlert(null)}>
 				<AlertTitle>{alert.title}</AlertTitle>
 				{alert.message}
 			</Alert>}
