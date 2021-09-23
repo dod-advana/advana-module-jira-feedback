@@ -18,11 +18,14 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-      - run: npm install
-      - run: npm ci
-      - run: npm test --passWithNoTests
+          registry-url: https://npm.pkg.github.com/
+          scope: '@dod-advana'
+      - run: |
+          npm set "@dod-advana:registry" "https://npm.pkg.github.com" && \
+          npm set "//https://npm.pkg.github.com/:_authToken" "${NODE_AUTH_TOKEN}" && \
+          npm install && npm ci && npm test --passWithNoTests
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NODE_AUTH_TOKEN: ${{secrets.NPMRC_FILE}}
 
   publish-gpr:
     needs: build
@@ -36,8 +39,12 @@ jobs:
         with:
           node-version: 14
           registry-url: https://npm.pkg.github.com/
-      - run: npm install
-      - run: npm ci
+      - run: |
+          npm set "@dod-advana:registry" "https://npm.pkg.github.com" && \
+          npm set "//https://npm.pkg.github.com/:_authToken" "${NODE_AUTH_TOKEN}" && \
+          npm install && npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPMRC_FILE}}
       - run: npm run publish:prepare
       - run: npm publish
         env:

@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _styles = require("@material-ui/core/styles");
 
-var _themeDefault = _interopRequireDefault(require("advana-platform-ui/dist/theme-default"));
+var _themeDefault = _interopRequireDefault(require("@dod-advana/advana-platform-ui/dist/theme-default"));
 
 var _Dialog = _interopRequireDefault(require("@material-ui/core/Dialog"));
 
@@ -31,9 +31,9 @@ var _Typography = _interopRequireDefault(require("@material-ui/core/Typography")
 
 var _lab = require("@material-ui/lab");
 
-var _LoadingIndicator = _interopRequireDefault(require("advana-platform-ui/dist/loading/LoadingIndicator"));
+var _LoadingIndicator = _interopRequireDefault(require("@dod-advana/advana-platform-ui/dist/loading/LoadingIndicator"));
 
-var _Auth = _interopRequireDefault(require("advana-platform-ui/dist/utilities/Auth"));
+var _Auth = _interopRequireDefault(require("@dod-advana/advana-platform-ui/dist/utilities/Auth"));
 
 var _StarRating = _interopRequireDefault(require("./StarRating"));
 

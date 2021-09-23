@@ -1,7 +1,11 @@
 {
-  "name": "advana-jira-feedback",
-  "version": "0.4.11",
+  "name": "@dod-advana/advana-jira-feedback",
+  "version": "0.4.10",
   "private": false,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": "git://github.com/dod-advana/advana-module-jira-feedback.git",
   "babel": {
     "presets": [
       "@babel/preset-react",
@@ -30,7 +34,7 @@
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@material-ui/core": "4.11.4",
     "@material-ui/lab": "4.0.0-alpha.58",
-    "advana-platform-ui": "^0.0.20",
+    "@dod-advana/advana-platform-ui": "^0.0.28",
     "bootstrap": "^5.0.1",
     "font-awesome": "^4.7.0",
     "react": "^17.0.2",
