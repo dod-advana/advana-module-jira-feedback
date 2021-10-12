@@ -100,7 +100,7 @@ const classStyles = (theme) => ({
 
 
 const DialogTitle = withStyles(classStyles)((props) => {
-	const { children, classes, onClose, ...other } = props;
+	const { children, classes, onClose, handleSubmit, ...other } = props;
 	return (
 		<MuiDialogTitle disableTypography className={classes.root} {...other}>
 			<Typography variant="h3">{children}</Typography>
@@ -252,7 +252,7 @@ export default function FeedbackModal({
 					<Button onClick={onRequestClose} color={"secondary"} >
 						Cancel
 					</Button>
-					<Button autoFocus onClick={handleSubmitFeedback} disabled={disableSubmit} color={"primary"}>
+					<Button autoFocus onClick={handleSubmit || handleSubmitFeedback} disabled={disableSubmit} color={"primary"}>
 						Submit
 					</Button>
 				</DialogActions>
