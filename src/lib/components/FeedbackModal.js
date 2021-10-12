@@ -128,7 +128,8 @@ const DialogActions = withStyles((theme) => ({
 
 export default function FeedbackModal({
 	open,
-	setOpen
+	setOpen,
+	handleSubmit
 }) {
 	const displayName = Auth.getUserDisplayName();
 	const nameSplits = displayName.split(' ');
