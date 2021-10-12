@@ -190,7 +190,8 @@ var DialogActions = (0, _styles.withStyles)(function (theme) {
 
 function FeedbackModal(_ref) {
   var open = _ref.open,
-      setOpen = _ref.setOpen;
+      setOpen = _ref.setOpen,
+      handleSubmit = _ref.handleSubmit;
 
   var displayName = _Auth.default.getUserDisplayName();
 
