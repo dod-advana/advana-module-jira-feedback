@@ -45,7 +45,7 @@ require("bootstrap/dist/css/bootstrap-grid.css");
 
 require("../css/FeedbackModal.css");
 
-var _excluded = ["children", "classes", "onClose"];
+var _excluded = ["children", "classes", "onClose", "handleSubmit"];
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -158,6 +158,7 @@ var DialogTitle = (0, _styles.withStyles)(classStyles)(function (props) {
   var children = props.children,
       classes = props.classes,
       onClose = props.onClose,
+      handleSubmit = props.handleSubmit,
       other = _objectWithoutProperties(props, _excluded);
 
   return /*#__PURE__*/_react.default.createElement(_DialogTitle.default, _extends({
@@ -318,7 +319,10 @@ function FeedbackModal(_ref) {
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: classes.root
   }, alert && /*#__PURE__*/_react.default.createElement(_lab.Alert, {
-    severity: alert.severity
+    severity: alert.severity,
+    onClose: function onClose() {
+      return setAlert(null);
+    }
   }, /*#__PURE__*/_react.default.createElement(_lab.AlertTitle, null, alert.title), alert.message), /*#__PURE__*/_react.default.createElement(_Dialog.default, {
     modal: false,
     open: open,
@@ -398,7 +402,7 @@ function FeedbackModal(_ref) {
     color: "secondary"
   }, "Cancel"), /*#__PURE__*/_react.default.createElement(_Button.default, {
     autoFocus: true,
-    onClick: handleSubmitFeedback,
+    onClick: handleSubmit || handleSubmitFeedback,
     disabled: disableSubmit,
     color: "primary"
   }, "Submit")))));
