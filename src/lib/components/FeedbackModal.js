@@ -166,7 +166,12 @@ export default function FeedbackModal({
 		try {
 			setLoading(true);
 			if(handleSubmit){
-				await handleSubmit();
+				await handleSubmit({
+					name: `${firstName} ${lastName}`,
+					email,
+					feedback,
+					rating
+				});
 			}else{
 				await submitFeedback({
 					name: `${firstName} ${lastName}`,

@@ -274,7 +274,12 @@ function FeedbackModal(_ref) {
               }
 
               _context.next = 5;
-              return handleSubmit();
+              return handleSubmit({
+                name: "".concat(firstName, " ").concat(lastName),
+                email: email,
+                feedback: feedback,
+                rating: rating
+              });
 
             case 5:
               _context.next = 9;
