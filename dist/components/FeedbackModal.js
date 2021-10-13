@@ -267,7 +267,21 @@ function FeedbackModal(_ref) {
             case 0:
               _context.prev = 0;
               setLoading(true);
-              _context.next = 4;
+
+              if (!handleSubmit) {
+                _context.next = 7;
+                break;
+              }
+
+              _context.next = 5;
+              return handleSubmit();
+
+            case 5:
+              _context.next = 9;
+              break;
+
+            case 7:
+              _context.next = 9;
               return (0, _api.submitFeedback)({
                 name: "".concat(firstName, " ").concat(lastName),
                 email: email,
@@ -275,18 +289,18 @@ function FeedbackModal(_ref) {
                 rating: rating
               });
 
-            case 4:
+            case 9:
               setAlert({
                 title: 'Success!',
                 severity: 'success',
                 message: 'Thank you for submitting your feedback!'
               });
               resetFeedbackForm();
-              _context.next = 12;
+              _context.next = 17;
               break;
 
-            case 8:
-              _context.prev = 8;
+            case 13:
+              _context.prev = 13;
               _context.t0 = _context["catch"](0);
               setAlert({
                 title: 'Error!',
@@ -295,18 +309,18 @@ function FeedbackModal(_ref) {
               });
               console.error(_context.t0);
 
-            case 12:
-              _context.prev = 12;
+            case 17:
+              _context.prev = 17;
               setLoading(false);
               setOpen(false);
-              return _context.finish(12);
+              return _context.finish(17);
 
-            case 16:
+            case 21:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 8, 12, 16]]);
+      }, _callee, null, [[0, 13, 17, 21]]);
     }));
 
     return function handleSubmitFeedback() {
@@ -403,7 +417,7 @@ function FeedbackModal(_ref) {
     color: "secondary"
   }, "Cancel"), /*#__PURE__*/_react.default.createElement(_Button.default, {
     autoFocus: true,
-    onClick: handleSubmit || handleSubmitFeedback,
+    onClick: handleSubmitFeedback,
     disabled: disableSubmit,
     color: "primary"
   }, "Submit")))));

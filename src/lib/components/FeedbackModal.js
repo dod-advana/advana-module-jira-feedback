@@ -165,12 +165,16 @@ export default function FeedbackModal({
 	const handleSubmitFeedback = async () => {
 		try {
 			setLoading(true);
-			await submitFeedback({
-				name: `${firstName} ${lastName}`,
-				email,
-				feedback,
-				rating
-			});
+			if(handleSubmit){
+				await handleSubmit();
+			}else{
+				await submitFeedback({
+					name: `${firstName} ${lastName}`,
+					email,
+					feedback,
+					rating
+				});
+			}
 
 			setAlert({
 				title: 'Success!',
@@ -253,7 +257,7 @@ export default function FeedbackModal({
 					<Button onClick={onRequestClose} color={"secondary"} >
 						Cancel
 					</Button>
-					<Button autoFocus onClick={handleSubmit || handleSubmitFeedback} disabled={disableSubmit} color={"primary"}>
+					<Button autoFocus onClick={handleSubmitFeedback} disabled={disableSubmit} color={"primary"}>
 						Submit
 					</Button>
 				</DialogActions>
