@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
-import {FeedbackModal} from './lib';
+import FeedbackModal from './lib/components/FeedbackModal';
 
 function App() {
 	const [open, setOpen] = useState(false);

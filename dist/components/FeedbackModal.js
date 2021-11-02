@@ -11,6 +11,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _styles = require("@material-ui/core/styles");
 
+var _core = require("@material-ui/core");
+
 var _themeDefault = _interopRequireDefault(require("@dod-advana/advana-platform-ui/dist/theme-default"));
 
 var _Dialog = _interopRequireDefault(require("@material-ui/core/Dialog"));
@@ -31,6 +33,8 @@ var _Typography = _interopRequireDefault(require("@material-ui/core/Typography")
 
 var _lab = require("@material-ui/lab");
 
+var _emailValidator = _interopRequireDefault(require("email-validator"));
+
 var _LoadingIndicator = _interopRequireDefault(require("@dod-advana/advana-platform-ui/dist/loading/LoadingIndicator"));
 
 var _Auth = _interopRequireDefault(require("@dod-advana/advana-platform-ui/dist/utilities/Auth"));
@@ -44,6 +48,8 @@ require("font-awesome/css/font-awesome.css");
 require("bootstrap/dist/css/bootstrap-grid.css");
 
 require("../css/FeedbackModal.css");
+
+var _grey = _interopRequireDefault(require("@material-ui/core/colors/grey"));
 
 var _excluded = ["children", "classes", "onClose", "handleSubmit"];
 
@@ -81,9 +87,10 @@ require('typeface-montserrat');
 
 var styles = {
   required: {
-    color: 'red',
+    color: 'darkred',
     fontWeight: 'bold',
-    fontSize: 14
+    fontSize: 14,
+    marginTop: 0
   },
   input: {
     width: '100%',
@@ -96,7 +103,8 @@ var styles = {
     border: '1px solid lightgrey'
   },
   experienceLabel: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textTransform: 'uppercase'
   },
   dialog: {
     width: '100%',
@@ -215,7 +223,8 @@ function FeedbackModal(_ref) {
   var classes = useStyles();
 
   var onRequestClose = function onRequestClose() {
-    return setOpen(false);
+    setOpen(false);
+    setEmailError(false);
   };
 
   var defaultState = {
@@ -251,10 +260,31 @@ function FeedbackModal(_ref) {
       feedback = _useState16[0],
       setFeedback = _useState16[1];
 
+  var _useState17 = (0, _react.useState)(false),
+      _useState18 = _slicedToArray(_useState17, 2),
+      emailError = _useState18[0],
+      setEmailError = _useState18[1];
+
+  var _useState19 = (0, _react.useState)(false),
+      _useState20 = _slicedToArray(_useState19, 2),
+      emailTextFocus = _useState20[0],
+      setEmailTextFocus = _useState20[1];
+
+  var handleEmailChange = function handleEmailChange(email) {
+    if (_emailValidator.default.validate(email)) {
+      setEmailError(false);
+    } else {
+      setEmailError(true);
+    }
+
+    setEmail(email);
+  };
+
   var resetFeedbackForm = function resetFeedbackForm() {
     setFirstName(defaultState.firstName);
     setLastName(defaultState.lastName);
     setEmail(defaultState.email);
+    setEmailError(false);
     setFeedback(defaultState.feedback);
     setRating(defaultState.rating);
   };
@@ -333,7 +363,7 @@ function FeedbackModal(_ref) {
     };
   }();
 
-  var disableSubmit = firstName.trim() === '' || lastName.trim() === '' || email.trim() === '';
+  var disableSubmit = firstName.trim() === '' || lastName.trim() === '' || email.trim() === '' || emailError;
   return /*#__PURE__*/_react.default.createElement(_styles.MuiThemeProvider, {
     theme: _themeDefault.default
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -344,55 +374,92 @@ function FeedbackModal(_ref) {
       return setAlert(null);
     }
   }, /*#__PURE__*/_react.default.createElement(_lab.AlertTitle, null, alert.title), alert.message), /*#__PURE__*/_react.default.createElement(_Dialog.default, {
+    id: "jira-feedback",
     modal: false,
     open: open,
     onRequestClose: onRequestClose,
     contentStyle: styles.dialog,
-    autoScrollBodyContent: true
+    autoScrollBodyContent: true,
+    PaperProps: {
+      style: {
+        padding: 20,
+        minWidth: 700
+      }
+    }
   }, /*#__PURE__*/_react.default.createElement(DialogTitle, {
     onClose: onRequestClose
-  }, "Help us improve your experience with feedback!"), /*#__PURE__*/_react.default.createElement(DialogContent, {
-    dividers: true
-  }, /*#__PURE__*/_react.default.createElement("div", {
+  }, "Help us improve your experience with feedback!"), /*#__PURE__*/_react.default.createElement(DialogContent, null, /*#__PURE__*/_react.default.createElement("div", {
     style: {
       paddingLeft: 20,
       paddingRight: 20
     }
   }, loading ? /*#__PURE__*/_react.default.createElement(_LoadingIndicator.default, null) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
-    className: "row m-b-15"
+    className: "row m-b-15",
+    style: {
+      width: '95%'
+    }
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "col-6"
-  }, /*#__PURE__*/_react.default.createElement("input", {
-    style: styles.input,
-    placeholder: "First Name",
+  }, /*#__PURE__*/_react.default.createElement(_core.TextField, {
+    variant: "outlined",
     value: firstName,
     onChange: function onChange(e) {
       return setFirstName(e.target.value);
+    },
+    name: "labels",
+    label: "First Name",
+    style: {
+      fontSize: 'small',
+      minWidth: '200px',
+      width: '100%'
     }
   }), /*#__PURE__*/_react.default.createElement("p", {
     style: styles.required
   }, "*Required")), /*#__PURE__*/_react.default.createElement("div", {
     className: "col-6"
-  }, /*#__PURE__*/_react.default.createElement("input", {
-    style: styles.input,
-    placeholder: "Last Name",
+  }, /*#__PURE__*/_react.default.createElement(_core.TextField, {
+    variant: "outlined",
     value: lastName,
     onChange: function onChange(e) {
       return setLastName(e.target.value);
+    },
+    name: "labels",
+    label: "Last Name",
+    style: {
+      fontSize: 'small',
+      minWidth: '200px',
+      width: '100%'
     }
   }), /*#__PURE__*/_react.default.createElement("p", {
     style: styles.required
   }, "*Required"))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "row m-b-15"
+    className: "row m-b-15",
+    style: {
+      width: '95%'
+    }
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "col-12"
-  }, /*#__PURE__*/_react.default.createElement("input", {
-    placeholder: "Email Address",
-    style: styles.input,
+  }, /*#__PURE__*/_react.default.createElement(_core.TextField, {
+    onFocus: function onFocus() {
+      return setEmailTextFocus(true);
+    },
+    onBlur: function onBlur() {
+      return setEmailTextFocus(false);
+    },
+    variant: "outlined",
     value: email,
     onChange: function onChange(e) {
-      return setEmail(e.target.value);
-    }
+      return handleEmailChange(e.target.value);
+    },
+    name: "labels",
+    label: "Email",
+    style: {
+      fontSize: 'small',
+      minWidth: '200px',
+      width: '100%'
+    },
+    error: emailError,
+    helperText: emailError && !emailTextFocus ? 'Please enter a valid email address.' : ''
   }), /*#__PURE__*/_react.default.createElement("p", {
     style: styles.required
   }, "*Required"))), /*#__PURE__*/_react.default.createElement("div", {
@@ -410,20 +477,42 @@ function FeedbackModal(_ref) {
     className: "row"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "col-12"
-  }, /*#__PURE__*/_react.default.createElement("textarea", {
-    style: styles.textArea,
-    placeholder: "Provide Feedback Here",
+  }, /*#__PURE__*/_react.default.createElement(_core.TextField, {
+    variant: "outlined",
+    placeholder: "Provide Feedback Here...",
+    multiline: true,
+    rows: 5,
     value: feedback,
     onChange: function onChange(e) {
       return setFeedback(e.target.value);
+    },
+    style: {
+      fontSize: 'small',
+      minWidth: '200px',
+      width: '100%'
     }
-  })))))), /*#__PURE__*/_react.default.createElement(DialogActions, null, /*#__PURE__*/_react.default.createElement(_Button.default, {
+  })))))), /*#__PURE__*/_react.default.createElement(DialogActions, {
+    style: {
+      marginTop: 20
+    }
+  }, /*#__PURE__*/_react.default.createElement(_Button.default, {
     onClick: onRequestClose,
-    color: "secondary"
+    style: {
+      backgroundColor: '#E0E0E0',
+      textTransform: 'none',
+      padding: '6px 15px',
+      fontSize: 16
+    }
   }, "Cancel"), /*#__PURE__*/_react.default.createElement(_Button.default, {
     autoFocus: true,
     onClick: handleSubmitFeedback,
     disabled: disableSubmit,
-    color: "primary"
+    style: {
+      backgroundColor: disableSubmit ? _grey.default[400] : '#E9691D',
+      color: 'white',
+      textTransform: 'none',
+      fontSize: 16,
+      padding: '6px 15px'
+    }
   }, "Submit")))));
 }
